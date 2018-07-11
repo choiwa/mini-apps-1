@@ -11,17 +11,29 @@ app.use('/', express.static(path.join(__dirname, 'client')));
 app.post('/', function (req, res) {
   var data = req.body;
   var parsedData = JSON.parse(data);
-  for (var key in parsedData) {
-    console.log(key);
+  var headers = Object.keys(parsedData);
+  console.log(headers);
+  var body = [];
+
+  var parsedDataRecursion = (parsedData) => {
+
+    parsedData.children.forEach(person => {
+      for (var i = 0; i < headers.length - 1; i++) {
+        var header = headers[i];
+        //console.log(parsedData[header]);
+        body.push(person[header]);
+      }
+      if(person.children !== []) {
+        return parsedDataRecursion(person);
+      }
+    })
   }
-
-
-
-
-  // res.send();
+  parsedDataRecursion(parsedData);
+  console.log(body);
 })
 
 app.listen(3000)
+console.log('listening to server 3000');
 
 // require Express
 // invoke Express
