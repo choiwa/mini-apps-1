@@ -10,6 +10,10 @@ $(document).ready(() => {
       contentType: 'text/plain',
       data: $("#jsonString").val(),
       success: function (data) {
+        return $('#answer').append(data)
+      },
+      error: function (){
+        throw('error');
       }
     })
   })
