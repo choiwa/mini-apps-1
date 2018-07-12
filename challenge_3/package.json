@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel . --watch --out-dir compiled --presets=env,react --ignore=node_modules,compiled --source-maps inline | nodemon server.js"
+    "start": "babel --watch client --out-dir public/compiled --presets=env,react --ignore=node_modules,compiled --source-maps inline"
   },
   "author": "",
   "license": "ISC",
